@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda de Streaming Profesional</title>
+  <!-- Fuente Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" 
+    rel="stylesheet"
+  >
+  <style>
+    /* ===============================
+       Global & Reset
+    =============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    
+    /* ===============================
+       Navbar
+    =============================== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar .brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2575fc;
+    }
+    .navbar nav a {
+      margin-left: 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .navbar nav a:hover {
+      color: #6a11cb;
+    }
+    
+    /* ===============================
+       Hero Section
+    =============================== */
+    .hero {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      text-align: center;
+      padding: 5rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1s ease-out;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero .btn {
+      background: #fff;
+      color: #2575fc;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .hero .btn:hover {
+      transform: scale(1.05);
+      background: #f0f0f0;
+    }
+    
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* ===============================
+       Section Titles
+    =============================== */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #2575fc;
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+    
+    /* ===============================
+       Container & Grid
+    =============================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* ===============================
+       Card Estilos
+    =============================== */
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1rem;
+      text-align: center;
+    }
+    .card-content h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 1.1rem;
+      color: #777;
+      margin-bottom: 0.5rem;
+    }
+    .stars {
+      color: #f7c02b;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #2575fc;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn:hover {
+      background: #6a11cb;
+      transform: scale(1.05);
+    }
+    
+    /* ===============================
+       Combos Estilos
+    =============================== */
+    .combos-container {
+      background: #fff3e0;
+      border-radius: 10px;
+      padding: 2rem 1rem;
+      margin-bottom: 3rem;
+    }
+    .combo-card {
+      background: #ffffff;
+      border: 2px solid #ffb74d;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .combo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .combo-images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+      flex-wrap: wrap;
+    }
+    .combo-images img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+    
+    /* ===============================
+       Contacto Section
+    =============================== */
+    .contact-section {
+      background: #2575fc;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .contact-section h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .contact-section p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .contact-section a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    
+    /* ===============================
+       Footer
+    =============================== */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="brand">Tienda de Streaming</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#combos">Combos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <h1>Bienvenido a Tu Tienda de Streaming</h1>
+    <p>Las mejores plataformas al mejor precio.</p>
+    <a href="#productos" class="btn">Ver Productos</a>
+  </section>
+
+  <!-- Productos Section -->
+  <section id="productos" class="container">
+    <h2 class="section-title">Servicios Individuales</h2>
+    <div class="card-grid">
+      <!-- Card Netflix -->
+      <div class="card">
+        <img src="https://www.grupoisos.com/wp-content/uploads/2024/07/Nota-BB-Media.jpg" alt="Netflix">
+        <div class="card-content">
+          <h3>Netflix</h3>
+          <p class="price">$3.50</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20Netflix" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card HBO Max -->
+      <div class="card">
+        <img src="https://www.eluniverso.com/resizer/v2/M5SC3V4V6FH6PIGLMB5JYWU3YE.png?auth=eec7ac4556942de7071ae8638b8f283287284e501c032e9ed87b00887304d8ac&width=1228&height=670&quality=75&smart=true" alt="HBO Max">
+        <div class="card-content">
+          <h3>HBO Max</h3>
+          <p class="price">$2.50</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20HBO%20Max" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card Prime Video -->
+      <div class="card">
+        <img src="https://brandemia.org/contenido/subidas/2023/02/amazon-prime-video-identidad-1200x670.png" alt="Prime Video">
+        <div class="card-content">
+          <h3>Prime Video</h3>
+          <p class="price">$2.00</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20Prime%20Video" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card Disney+ -->
+      <div class="card">
+        <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+        <div class="card-content">
+          <h3>Disney+</h3>
+          <p class="price">$2.50</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20Disney%2B" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card Spotify -->
+      <div class="card">
+        <img src="https://www.santandersmusic.com/media/magazine/spotify-2-lg.webp" alt="Spotify">
+        <div class="card-content">
+          <h3>Spotify</h3>
+          <p class="price">$3.50</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20Spotify" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card Cuchyrooll -->
+      <div class="card">
+        <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000042000/e965921d2670a197008fe9403e50aaa0b150eabcaab4ce8b0c860d75ba4d1ee6" alt="Cuchyrooll">
+        <div class="card-content">
+          <h3>Cuchyrooll</h3>
+          <p class="price">$2.50</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20Cuchyrooll" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card YouTube Premium -->
+      <div class="card">
+        <img src="https://elcomercio.pe/resizer/v2/EL5YH3SZJFGTNMWO7IXVPHQLPQ.png?auth=7615b3ed704474f8747fe717d31b45156b32644a5c67cf5bc1f15517e13bc17a&width=1200&height=900&quality=75&smart=true" alt="YouTube Premium">
+        <div class="card-content">
+          <h3>YouTube Premium</h3>
+          <p class="price">$2.50</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20YouTube%20Premium" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+      <!-- Card Flujo Tv -->
+      <div class="card">
+        <img src="https://static.diarioconvos.com/uploads/2024/10/Flujo-TV-canales-828x548.jpg" alt="Flujo Tv">
+        <div class="card-content">
+          <h3>Flujo Tv</h3>
+          <p class="price">$3.00</p>
+          <div class="stars">★★★★☆</div>
+          <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20comprar%20Flujo%20Tv" class="btn" target="_blank">Comprar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Combos Especiales Section -->
+  <section id="combos" class="container">
+    <h2 class="section-title">Combos Especiales</h2>
+    <div class="combos-container">
+      <div class="card-grid">
+        <!-- Combo 1: Netflix + Disney -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.grupoisos.com/wp-content/uploads/2024/07/Nota-BB-Media.jpg" alt="Netflix">
+              <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+            </div>
+            <h3>Combo Netflix + Disney</h3>
+            <p class="price">$5.00</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Netflix%20%2B%20Disney" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 2: Netflix + YouTube Premium -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.grupoisos.com/wp-content/uploads/2024/07/Nota-BB-Media.jpg" alt="Netflix">
+              <img src="https://elcomercio.pe/resizer/v2/EL5YH3SZJFGTNMWO7IXVPHQLPQ.png?auth=7615b3ed704474f8747fe717d31b45156b32644a5c67cf5bc1f15517e13bc17a&width=1200&height=900&quality=75&smart=true" alt="YouTube Premium">
+            </div>
+            <h3>Combo Netflix + YouTube Premium</h3>
+            <p class="price">$5.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Netflix%20%2B%20YouTube%20Premium" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 3: HBO Max + YouTube Premium -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.eluniverso.com/resizer/v2/M5SC3V4V6FH6PIGLMB5JYWU3YE.png?auth=eec7ac4556942de7071ae8638b8f283287284e501c032e9ed87b00887304d8ac&width=1228&height=670&quality=75&smart=true" alt="HBO Max">
+              <img src="https://elcomercio.pe/resizer/v2/EL5YH3SZJFGTNMWO7IXVPHQLPQ.png?auth=7615b3ed704474f8747fe717d31b45156b32644a5c67cf5bc1f15517e13bc17a&width=1200&height=900&quality=75&smart=true" alt="YouTube Premium">
+            </div>
+            <h3>Combo HBO Max + YouTube Premium</h3>
+            <p class="price">$4.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20HBO%20Max%20%2B%20YouTube%20Premium" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 4: Prime Video + Spotify -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://brandemia.org/contenido/subidas/2023/02/amazon-prime-video-identidad-1200x670.png" alt="Prime Video">
+              <img src="https://www.santandersmusic.com/media/magazine/spotify-2-lg.webp" alt="Spotify">
+            </div>
+            <h3>Combo Prime Video + Spotify</h3>
+            <p class="price">$5.25</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Prime%20Video%20%2B%20Spotify" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 5: Disney+ + YouTube Premium -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+              <img src="https://elcomercio.pe/resizer/v2/EL5YH3SZJFGTNMWO7IXVPHQLPQ.png?auth=7615b3ed704474f8747fe717d31b45156b32644a5c67cf5bc1f15517e13bc17a&width=1200&height=900&quality=75&smart=true" alt="YouTube Premium">
+            </div>
+            <h3>Combo Disney+ + YouTube Premium</h3>
+            <p class="price">$4.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Disney%2B%20%2B%20YouTube%20Premium" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 6: Netflix + Disney + HBO -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.grupoisos.com/wp-content/uploads/2024/07/Nota-BB-Media.jpg" alt="Netflix">
+              <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+              <img src="https://www.eluniverso.com/resizer/v2/M5SC3V4V6FH6PIGLMB5JYWU3YE.png?auth=eec7ac4556942de7071ae8638b8f283287284e501c032e9ed87b00887304d8ac&width=1228&height=670&quality=75&smart=true" alt="HBO Max">
+            </div>
+            <h3>Combo Netflix + Disney + HBO</h3>
+            <p class="price">$7.50</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Netflix%2BDisney%2BHBO" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 7: Super Combo (Netflix + Disney + HBO + Cuchyrooll) -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.grupoisos.com/wp-content/uploads/2024/07/Nota-BB-Media.jpg" alt="Netflix">
+              <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+              <img src="https://www.eluniverso.com/resizer/v2/M5SC3V4V6FH6PIGLMB5JYWU3YE.png?auth=eec7ac4556942de7071ae8638b8f283287284e501c032e9ed87b00887304d8ac&width=1228&height=670&quality=75&smart=true" alt="HBO Max">
+              <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000042000/e965921d2670a197008fe9403e50aaa0b150eabcaab4ce8b0c860d75ba4d1ee6" alt="Cuchyrooll">
+            </div>
+            <h3>Super Combo</h3>
+            <p class="price">$9.50</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20super%20combo%20Netflix%2BDisney%2BHBO%2BCuchyrooll" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 8: Prime Video + YouTube Premium -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://brandemia.org/contenido/subidas/2023/02/amazon-prime-video-identidad-1200x670.png" alt="Prime Video">
+              <img src="https://elcomercio.pe/resizer/v2/EL5YH3SZJFGTNMWO7IXVPHQLPQ.png?auth=7615b3ed704474f8747fe717d31b45156b32644a5c67cf5bc1f15517e13bc17a&width=1200&height=900&quality=75&smart=true" alt="YouTube Premium">
+            </div>
+            <h3>Combo Prime Video + YouTube Premium</h3>
+            <p class="price">$4.25</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Prime%20Video%20%2B%20YouTube%20Premium" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 9: Spotify + HBO Max -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.santandersmusic.com/media/magazine/spotify-2-lg.webp" alt="Spotify">
+              <img src="https://www.eluniverso.com/resizer/v2/M5SC3V4V6FH6PIGLMB5JYWU3YE.png?auth=eec7ac4556942de7071ae8638b8f283287284e501c032e9ed87b00887304d8ac&width=1228&height=670&quality=75&smart=true" alt="HBO Max">
+            </div>
+            <h3>Combo Spotify + HBO Max</h3>
+            <p class="price">$5.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Spotify%20%2B%20HBO%20Max" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 10: Spotify + Netflix -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.santandersmusic.com/media/magazine/spotify-2-lg.webp" alt="Spotify">
+              <img src="https://www.grupoisos.com/wp-content/uploads/2024/07/Nota-BB-Media.jpg" alt="Netflix">
+            </div>
+            <h3>Combo Spotify + Netflix</h3>
+            <p class="price">$6.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Spotify%20%2B%20Netflix" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 11: Spotify + Disney -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://www.santandersmusic.com/media/magazine/spotify-2-lg.webp" alt="Spotify">
+              <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+            </div>
+            <h3>Combo Spotify + Disney</h3>
+            <p class="price">$5.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Spotify%20%2B%20Disney" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+        <!-- Combo 12: Disney+ + Cuchyrooll -->
+        <div class="combo-card">
+          <div class="card-content">
+            <div class="combo-images">
+              <img src="https://media.vandalsports.com/i/640x360/11-2024/20241114183729_1.jpg" alt="Disney+">
+              <img src="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000042000/e965921d2670a197008fe9403e50aaa0b150eabcaab4ce8b0c860d75ba4d1ee6" alt="Cuchyrooll">
+            </div>
+            <h3>Combo Disney+ + Cuchyrooll</h3>
+            <p class="price">$4.75</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://api.whatsapp.com/send?phone=593962037463&text=Hola%20que%20tal%2C%20quiero%20el%20combo%20Disney%2B%20%2B%20Cuchyrooll" class="btn" target="_blank">Comprar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto Section -->
+  <section id="contacto" class="contact-section">
+    <h2>Contacto</h2>
+    <p>¿Tienes alguna pregunta o necesitas ayuda? Escríbenos y te responderemos a la brevedad.</p>
+    <p>Email: <a href="mailto:info@tiendastreaming.com">info@tiendastreaming.com</a></p>
+    <p>Tel: <a href="tel:+593962037463">+593 962037463</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Tienda de Streaming. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
